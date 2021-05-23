@@ -23,13 +23,12 @@
     <%= f.text_field :domain, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :logo_url %><br />
-    <%= f.text_field :logo_url, class: "form-control" %>
-  </div>
-  <div class="form-group">
     <%= f.label :logo_source %><br />
     <%= f.select :logo_source, Organization.logo_sources.keys.map { |logo_source| [logo_source.humanize, logo_source]}, {}, {class: "form-control"} %>
-
+  </div>
+  <div class="form-group">
+    <%= f.label :logo_url %><br />
+    <%= f.text_field :logo_url, class: "form-control" %>
   </div>
   <div class="actions">
     <%= f.submit "Submit", class: "btn btn-primary" %>

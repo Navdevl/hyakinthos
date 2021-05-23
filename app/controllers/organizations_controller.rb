@@ -21,18 +21,16 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    redirect_to organizations_path unless @organization.present?
   end
 
   def edit
-    redirect_to organizations_path unless @organization.present?
   end
 
   def update
     if @organization.update(organization_params)
       redirect_to(@organization, notice: 'Organization was successfully updated.')
     else
-      render :new
+      render :edit
     end
   end
 
@@ -65,5 +63,6 @@ class OrganizationsController < ApplicationController
 
   def set_organization
     @organization = current_user.organizations.find_by(id: params[:id])
+    redirect_to organizations_path unless @organization.present?
   end
 end

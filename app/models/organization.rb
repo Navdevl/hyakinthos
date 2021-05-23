@@ -19,7 +19,7 @@ class Organization < ApplicationRecord
 	belongs_to :user, optional: true
 	has_many :match_rules
 
-	enum logo_source: [:clearbit]
+	enum logo_source: [:clearbit, :manual]
 
   validates :name, presence: true
   validates :domain, presence: true

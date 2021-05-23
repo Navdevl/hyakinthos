@@ -12,9 +12,13 @@ class Api::V1::OrganizationsController < Api::V1::ApplicationController
   end
 
   private
+  def key_user
+    User.find_by(api_key: params[:api_key]) if params[:api_key].present?
+  end
+
   def filtered_match_rules
-    if user_signed_in?
-      current_user.match_rules
+    if key_user.present?
+      key_user.match_rules
     else
       default_organizations = Organization.where(user_id: nil)
       MatchRule.where(organization: default_organizations)

@@ -1,0 +1,27 @@
+<h1>Edit match rule</h1>
+<%= form_for(@match_rule) do |f| %>
+  <% if @match_rule.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@match_rule.errors.count, "error") %> prohibited
+        this@match_rule from being saved:</h2>
+    <ul>
+    <% @match_rule.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :match_string %><br />
+    <%= f.text_field :match_string, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :rule_type %><br />
+    <%= f.select :rule_type, MatchRule.rule_types.keys.map { |rule_type| [rule_type.humanize, rule_type]}, {}, {class: "form-control"} %>
+
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+    <%= link_to 'Back', organization_path(@match_rule.organization), class: "btn btn-light" %>
+  </div>
+<% end %>

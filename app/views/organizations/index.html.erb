@@ -17,7 +17,6 @@
 				    <tr>
 							<tr>
 								<th scope="col">Name</th>
-								<th scope="col">Description</th>
 								<th scope="col">Domain</th>
 								<th scope="col">Logo URL</th>
 								<th scope="col">Source</th>
@@ -30,7 +29,6 @@
 						<% @organizations.each do |organization| %>
 							<tr scope="row">
 								<td><%= organization.name %></td>
-								<td><%= organization.description %></td>
 								<td><%= organization.domain %></td>
 								<td><%= organization.logo_url %></td>
 								<td><%= organization.logo_source.humanize %></td>

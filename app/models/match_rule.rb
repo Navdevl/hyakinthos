@@ -24,6 +24,6 @@ class MatchRule < ApplicationRecord
 
   private
   def clean_the_string
-    self.clean_match_string = match_string
+    self.clean_match_string = MatchRule.clean_string match_string
   end
 end
