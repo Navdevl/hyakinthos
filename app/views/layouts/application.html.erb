@@ -10,6 +10,17 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mt-2">
+          <% if user_signed_in? %>
+            <%= link_to "Log out as #{current_user.email}", destroy_user_session_path, method: :delete, class: "float-right" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="mt-4">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

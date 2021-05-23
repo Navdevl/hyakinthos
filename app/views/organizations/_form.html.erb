@@ -1,0 +1,38 @@
+<%= form_for(@organization) do |f| %>
+  <% if @organization.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@organization.errors.count, "error") %> prohibited
+        this organization from being saved:</h2>
+    <ul>
+    <% @organization.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :domain %><br />
+    <%= f.text_field :domain, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :logo_url %><br />
+    <%= f.text_field :logo_url, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :logo_source %><br />
+    <%= f.select :logo_source, Organization.logo_sources.keys.map { |logo_source| [logo_source.humanize, logo_source]}, {}, {class: "form-control"} %>
+
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+    <%= link_to 'Back', organizations_path, class: "btn btn-light" %>
+  </div>
+<% end %>

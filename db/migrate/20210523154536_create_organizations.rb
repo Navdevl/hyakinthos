@@ -6,6 +6,7 @@ class CreateOrganizations < ActiveRecord::Migration[6.0]
       t.string :domain
       t.string :logo_url
       t.integer :logo_source
+      t.references :user, null: true, foreign_key: true
 
       t.timestamps
     end

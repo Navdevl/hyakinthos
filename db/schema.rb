@@ -18,12 +18,11 @@ ActiveRecord::Schema.define(version: 2021_05_23_154606) do
   create_table "match_rules", force: :cascade do |t|
     t.integer "rule_type"
     t.string "match_string"
+    t.string "clean_match_string"
     t.bigint "organization_id", null: false
-    t.bigint "users_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["organization_id"], name: "index_match_rules_on_organization_id"
-    t.index ["users_id"], name: "index_match_rules_on_users_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -32,8 +31,10 @@ ActiveRecord::Schema.define(version: 2021_05_23_154606) do
     t.string "domain"
     t.string "logo_url"
     t.integer "logo_source"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_organizations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,5 +50,5 @@ ActiveRecord::Schema.define(version: 2021_05_23_154606) do
   end
 
   add_foreign_key "match_rules", "organizations"
-  add_foreign_key "match_rules", "users", column: "users_id"
+  add_foreign_key "organizations", "users"
 end

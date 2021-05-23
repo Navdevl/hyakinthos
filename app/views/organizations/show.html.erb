@@ -1,0 +1,48 @@
+
+<div class="row">
+	<div class="col-12">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="h1">
+					<%= link_to(fa_icon("arrow-left"), organizations_path) %>
+					Match rules for <%= @organization.name.humanize %>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<%= link_to "New match rule for #{@organization.name.humanize}", match_rules_new_organization_path, class: "btn btn-primary float-right" %>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+			<div class="col-12">
+				<table class="table">
+				  <thead class="thead-dark">
+				    <tr>
+							<tr>
+								<th scope="col">Match string</th>
+								<th scope="col">Rule type</th>
+								<th scope="col">Action</th>
+							</tr>
+				    </tr>
+				  </thead>
+				  
+				  <tbody>
+						<% @organization.match_rules.each do |match_rule| %>
+							<tr scope="row">
+								<td><%= match_rule.match_string %></td>
+								<td><%= match_rule.rule_type.humanize %></td>
+								<td>
+									<%= link_to 'Edit', edit_match_rule_path(match_rule) %>
+									<%= link_to 'Delete', match_rule, confirm: 'Are you sure?', method: :delete %></td>
+								</td>
+							</tr>
+						<% end %>
+				  </tbody>
+				</table>
+				
+			</div>
+		</div>
+
+	</div>	
+</div>
+

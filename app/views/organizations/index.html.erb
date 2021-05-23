@@ -1,0 +1,52 @@
+
+<div class="row">
+	<div class="col-12">
+		<div class="row">
+			<div class="col-md-8">
+				<h1>Your organization dictionary</h1>
+			</div>
+			<div class="col-md-4">
+				<%= link_to 'New organization', new_organization_path, class: "btn btn-primary float-right" %>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+			<div class="col-12">
+				<table class="table">
+				  <thead class="thead-dark">
+				    <tr>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">Description</th>
+								<th scope="col">Domain</th>
+								<th scope="col">Logo URL</th>
+								<th scope="col">Source</th>
+								<th scope="col">Actions</th>
+							</tr>
+				    </tr>
+				  </thead>
+				  
+				  <tbody>
+						<% @organizations.each do |organization| %>
+							<tr scope="row">
+								<td><%= organization.name %></td>
+								<td><%= organization.description %></td>
+								<td><%= organization.domain %></td>
+								<td><%= organization.logo_url %></td>
+								<td><%= organization.logo_source.humanize %></td>
+								<td>
+									<%= link_to 'Edit', edit_organization_path(organization) %>
+									<%= link_to 'Show rules', organization %>
+									<%= link_to 'Delete', organization, confirm: 'Are you sure?', method: :delete %></td>
+								</td>
+							</tr>
+						<% end %>
+				  </tbody>
+				</table>
+				
+			</div>
+		</div>
+
+	</div>	
+</div>
+
